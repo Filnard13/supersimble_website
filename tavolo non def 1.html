@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa di Laurea - Trova il tuo Tavolo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2d3d3; /* Rosso chiaro */
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .table-info {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .table-info img {
+            max-width: 100px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 20px;
+        }
+        .table-info h2 {
+            font-size: 2em;
+            margin: 10px 0;
+            clear: both;
+        }
+        .table-info p {
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trova il tuo Tavolo</h1>
+    <p>Inserisci il tuo Nome e Cognome per sapere a quale tavolo devi sederti:</p>
+    <input type="text" id="name" placeholder="Nome e Cognome">
+    <button onclick="findTable()">Trova Tavolo</button>
+    <div id="result"></div>
+
+    <div id="table1" class="table-info">
+        <img src="john_maynard_keynes.jpg" alt="John Maynard Keynes">
+        <h2>John Maynard Keynes</h2>
+        <p>Filippo, Chiara, Alessio, Maya, Liliana, Lucrezia, Valeria, Nicolò</p>
+        <p>John Maynard Keynes (1883-1946) è stato un economista britannico il cui lavoro ha rivoluzionato la teoria economica del XX secolo. La sua opera fondamentale, "Teoria generale dell'occupazione, dell'interesse e della moneta" (1936), ha introdotto il concetto che la domanda aggregata – somma di spesa pubblica, privata e investimenti – determina il livello di occupazione e produzione. Keynes criticava le teorie classiche che presumevano l'auto-regolazione dei mercati e sosteneva che l'intervento governativo fosse essenziale per stabilizzare l'economia durante le recessioni. La sua teoria ha influenzato profondamente le politiche economiche globali, ispirando misure come il New Deal e cambiando il ruolo dello Stato nell'economia. Le sue idee continuano a essere rilevanti, nonostante le critiche e le revisioni successive.</p>
+    </div>
+    <div id="table2" class="table-info">
+        <img src="paul_samuelson.jpg" alt="Paul Samuelson">
+        <h2>Paul Samuelson</h2>
+        <p>Federico, Valentin, Sofia, Matteo, Luca, Francesco, Camilla</p>
+        <p>Paul Samuelson è stato un economista americano e il primo americano a vincere il Premio Nobel per le Scienze Economiche. È stato descritto come il "padre dell'economia moderna" ed era noto per i suoi contributi a molti campi della teoria economica.</p>
+    </div>
+    <div id="table3" class="table-info">
+        <img src="federico_caffe.jpg" alt="Federico Caffè">
+        <h2>Federico Caffè</h2>
+        <p>Angela, Valentino, Roberta, Alfredo, Maurizio, Teresa, Johan, Dieter, Alessandro, Giselda</p>
+        <p>Federico Caffè è stato un economista italiano, ricordato per il suo lavoro in politica economica e i suoi insegnamenti. Era un sostenitore dello stato sociale e il suo lavoro ha influenzato significativamente le politiche economiche italiane nel periodo postbellico.</p>
+    </div>
+    <div id="table4" class="table-info">
+        <img src="milton_friedman.jpg" alt="Milton Friedman">
+        <h2>Milton Friedman</h2>
+        <p>Michele, Valentina, Giulio, Benedetta, Federico, Leonardo</p>
+        <p>Milton Friedman è stato un economista e statistico americano che ha ricevuto il Premio Nobel per le Scienze Economiche nel 1976. È noto per le sue ricerche sull'analisi del consumo, la storia e la teoria monetaria, e la complessità della politica di stabilizzazione.</p>
+    </div>
+    <div id="table5" class="table-info">
+        <img src="adam_smith.jpg" alt="Adam Smith">
+        <h2>Adam Smith</h2>
+        <p>Arcangelo, Marco, Mauro, Rosalba, Ezio, Antonella, Alessandro, Valentina, Lele, Giorgia</p>
+        <p>Adam Smith è stato un economista, filosofo e autore scozzese, ampiamente considerato il padre dell'economia moderna. Il suo libro, "La ricchezza delle nazioni," è considerato il primo lavoro di economia moderna e ha gettato le basi per lo studio dei mercati liberi.</p>
+    </div>
+
+    <script>
+        const guests = {
+            "Filippo Nardoni": "table1",
+            "Chiara Maragoni": "table1",
+            "Alessio Di Santo": "table1",
+            "Maya Giusti": "table1",
+            "Liliana Babiloni": "table1",
+            "Lucrezia Colasanti": "table1",
+            "Valeria De Angelis": "table1",
+            "Nicolò Danieli": "table1",
+            "Federico Nardoni": "table2",
+            "Valentin Cenizo": "table2",
+            "Sofia Fresca": "table2",
+            "Matteo Cancelmo": "table2",
+            "Luca Antogiovanni": "table2",
+            "Francesco Galloni": "table2",
+            "Camilla Subiaco": "table2",
+            "Angela Valenti": "table3",
+            "Valentino Nardoni": "table3",
+            "Roberta Massaroni": "table3",
+            "Alfredo Di Santo": "table3",
+            "Maurizio Maragoni": "table3",
+            "Teresa Ciangiola": "table3",
+            "Johan Mestdagh": "table3",
+            "Dieter Loose": "table3",
+            "Alessandro Nardoni": "table3",
+            "Giselda Mirabella": "table3",
+            "Michele Subiaco": "table4",
+            "Valentina Antonetti": "table4",
+            "Giulio Colandrea": "table4",
+            "Benedetta Palombi": "table4",
+            "Federico Colandrea": "table4",
+            "Leonardo Colandrea": "table4",
+            "Arcangelo Nardoni": "table5",
+            "Marco Subiaco": "table5",
+            "Mauro Altobelli": "table5",
+            "Rosalba Di Santo": "table5",
+            "Ezio Di Santo": "table5",
+            "Antonella Filippi": "table5",
+            "Alessandro Altobelli": "table5",
+            "Valentina Altobelli": "table5",
+            "Lele": "table5",
+            "Giorgia Di Santo": "table5",
+        };
+
+        function findTable() {
+            const name = document.getElementById("name").value.trim().toLowerCase();
+            const resultDiv = document.getElementById("result");
+
+            const table = Object.keys(guests).find(guestName => guestName.toLowerCase() === name);
+
+            if (table) {
+                document.querySelectorAll('.table-info').forEach(div => div.style.display = 'none');
+                document.getElementById(guests[table]).style.display = 'block';
+                resultDiv.innerHTML = "";
+            } else {
+                document.querySelectorAll('.table-info').forEach(div => div.style.display = 'none');
+                resultDiv.innerHTML = "Nome non trovato. Per favore, verifica e riprova.";
+            }
+        }
+    </script>
+</body>
+</html>
